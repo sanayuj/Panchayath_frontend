@@ -17,7 +17,11 @@ function Footer() {
             <h6>Categories</h6>
             <ul className="footer-links">
               <li><Link >new Project</Link></li>
-            
+              <li><Link >About Us</Link></li>
+              <li><Link >Contact Us</Link></li>
+              <li><Link >Contribute</Link></li>
+              <li><Link >Privacy Policy</Link></li>
+              <li><Link >map</Link></li>
             </ul>
           </div>
 

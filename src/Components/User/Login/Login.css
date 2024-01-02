@@ -18,7 +18,7 @@
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 500px; /* Adjust the width as needed */
+    width: 500px;
 
   }
 
@@ -26,10 +26,6 @@
     margin-bottom: 20px;
   }
 
-  label {
-    display: block;
-    margin-bottom: 5px;
-  }
 
   .loginInput {
     width: 100%;

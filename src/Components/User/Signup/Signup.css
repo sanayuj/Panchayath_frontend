@@ -22,12 +22,12 @@
     margin-bottom: 20px;
   }
 
-  label {
+  .signupLabel {
     display: block;
     margin-bottom: 5px;
   }
 
-  input {
+  .signupInput {
     width: 100%;
     padding: 10px;
     box-sizing: border-box;
@@ -36,7 +36,7 @@
     margin-top: 5px;
   }
 
-  button {
+  .SignupBtn {
     background-color: #4caf50;
     color: #fff;
     padding: 10px 20px;
@@ -46,6 +46,6 @@
     font-size: 16px;
   }
 
-  button:hover {
+  SignupBtn:hover {
     background-color: #45a049;
   }
