@@ -1,14 +1,14 @@
 .site-footer
 {
-  background-color:#26272b;
+  background-color:#ffffff;
   padding:45px 0 20px;
   font-size:15px;
   line-height:24px;
-  color:#737373;
+  color:#000000;
 }
 .site-footer hr
 {
-  border-top-color:#bbb;
+  border-top-color:#744949;
   opacity:0.5
 }
 .site-footer hr.small
@@ -17,7 +17,7 @@
 }
 .site-footer h6
 {
-  color:#fff;
+  color:#000000;
   font-size:16px;
   text-transform:uppercase;
   margin-top:5px;
@@ -25,7 +25,7 @@
 }
 .site-footer a
 {
-  color:#737373;
+  color:#000000;
 }
 .site-footer a:hover
 {
@@ -43,7 +43,7 @@
 }
 .footer-links a
 {
-  color:#737373
+  color:#000000
 }
 .footer-links a:active,.footer-links a:focus,.footer-links a:hover
 {
