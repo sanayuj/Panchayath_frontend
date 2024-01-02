@@ -1,13 +1,14 @@
 import React from "react";
 import "./Header.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Header() {
+  const navigate=useNavigate()
   return (
     <div>
       <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-          <Link class="navbar-brand" to={""}>
+          <Link class="navbar-brand" to={"/"}>
             <img
               className="govLogo"
               src="https://gad.kerala.gov.in/sites/default/files/inline-images/kerala%20final%20emblem_0.jpg"
@@ -28,7 +29,7 @@ function Header() {
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <Link class="nav-link active" aria-current="page" to={""}>
+                <Link class="nav-link active" aria-current="page" to={"/"}>
                   Home
                 </Link>
               </li>
@@ -78,7 +79,7 @@ function Header() {
               </li>
             </ul>
           </div>
-        <button className="loginBtn">Login</button>
+        <button className="loginBtn" onClick={()=>navigate("/login")}>Login</button>
         </div>
       </nav>
     </div>

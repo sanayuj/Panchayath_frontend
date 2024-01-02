@@ -10,7 +10,7 @@ function Carousel() {
     </div>
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img src=""/>
+        <img src="https://img.onmanorama.com/content/dam/mm/en/kerala/top-news/images/2023/9/16/K-Premkumar-MLA-of-Ottapalam.jpg.transform/schema-16x9/image.jpg" class="d-block w-100" alt="Project image One"/>
       </div>
       <div class="carousel-item">
         <img src="https://assets.jci.cc/images/projects/000/000/528/large/5018.jpg?1499373334" class="d-block w-100" alt="Project image Two"/>
@@ -18,7 +18,6 @@ function Carousel() {
       <div class="carousel-item">
         <img src="https://malayalam.oneindia.com/img/2023/01/palakkad-1674934193.jpg" class="d-block w-100" alt="Project image Three"/>
       </div>
-      https://img.onmanorama.com/content/dam/mm/en/kerala/top-news/images/2023/9/16/K-Premkumar-MLA-of-Ottapalam.jpg.transform/schema-16x9/image.jpg" class="d-block w-100" alt="Project image One
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
