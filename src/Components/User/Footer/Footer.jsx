@@ -16,23 +16,23 @@ function Footer() {
           <div className="col-xs-6 col-md-3">
             <h6>Categories</h6>
             <ul className="footer-links">
-              <li><Link >new Project</Link></li>
-              <li><Link >About Us</Link></li>
-              <li><Link >Contact Us</Link></li>
-              <li><Link >Contribute</Link></li>
-              <li><Link >Privacy Policy</Link></li>
-              <li><Link >map</Link></li>
+              <li><Link className='text-decoration-none' >new Project</Link></li>
+              <li><Link className='text-decoration-none' >About Us</Link></li>
+              <li><Link className='text-decoration-none'>Contact Us</Link></li>
+              <li><Link className='text-decoration-none'>Contribute</Link></li>
+              <li><Link className='text-decoration-none'>Privacy Policy</Link></li>
+              <li><Link className='text-decoration-none'>map</Link></li>
             </ul>
           </div>
 
           <div className="col-xs-6 col-md-3">
             <h6>Quick Links</h6>
             <ul className="footer-links">
-              <li><Link >About Us</Link></li>
-              <li><Link >Contact Us</Link></li>
-              <li><Link >Contribute</Link></li>
-              <li><Link >Privacy Policy</Link></li>
-              <li><Link >map</Link></li>
+              <li><Link className='text-decoration-none'>About Us</Link></li>
+              <li><Link className='text-decoration-none'>Contact Us</Link></li>
+              <li><Link className='text-decoration-none'>Contribute</Link></li>
+              <li><Link className='text-decoration-none'>Privacy Policy</Link></li>
+              <li><Link className='text-decoration-none'>map</Link></li>
             </ul>
           </div>
         </div>
