@@ -1,9 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Header.css";
 import { Link, useNavigate } from "react-router-dom";
+import { userHeader } from "../../../Services/userApi";
+import { useDispatch, useSelector } from "react-redux";
+import { setUserDetails } from "../../../Features/setUser";
 
 function Header() {
-  const navigate=useNavigate()
+  const user = useSelector((state) => state.user.value);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  useEffect(() => {
+    userHeader()
+      .then((res) => {
+        if (res.data.status) {
+          dispatch(setUserDetails(res.data.userDetails));
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
   return (
     <div>
       <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -13,7 +29,7 @@ function Header() {
               className="govLogo"
               src="https://gad.kerala.gov.in/sites/default/files/inline-images/kerala%20final%20emblem_0.jpg"
             ></img>
-             <span className="mx-2">Ente panchayath</span>
+            <span className="mx-2">Ente panchayath</span>
           </Link>
           <button
             class="navbar-toggler"
@@ -57,29 +73,44 @@ function Header() {
                 <ul class="dropdown-menu">
                   <li>
                     <Link class="dropdown-item" to={""}>
-                    Birth certificate
+                      Birth certificate
                     </Link>
                   </li>
                   <li>
                     <Link class="dropdown-item" to={""}>
-                    Death certificate
+                      Death certificate
                     </Link>
                   </li>
                   <li>
                     <Link class="dropdown-item" to={""}>
-                    Marriage certificate
+                      Marriage certificate
                     </Link>
                   </li>
                 </ul>
               </li>
               <li class="nav-item">
-                <Link class="nav-link" to={""}>
+                <Link class="nav-link" to={"/complaint"}>
                   Complaint
                 </Link>
               </li>
             </ul>
           </div>
-        <button className="loginBtn" onClick={()=>navigate("/login")}>Login</button>
+          {user ? (
+            <button
+              className="logoutBtn"
+              onClick={() => {
+                localStorage.removeItem("jwt");
+                dispatch(setUserDetails(""));
+                navigate("/login");
+              }}
+            >
+              Logout
+            </button>
+          ) : (
+            <button className="loginBtn" onClick={() => navigate("/login")}>
+              Login
+            </button>
+          )}
         </div>
       </nav>
     </div>

@@ -5,9 +5,11 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 import { userLogin } from "../../../Services/userApi";
 import { toast } from "react-toastify";
-
+import { useDispatch, useSelector } from "react-redux";
+import { setUserDetails } from "../../../Features/setUser";
 
 function Login() {
+  const dispatch=useDispatch()
   const navigate=useNavigate()
   const initialValues = {
     phoneNumber: "",
@@ -17,10 +19,12 @@ function Login() {
   const onSubmit = async (values) => {
     const { data } = await userLogin(values);
     if (data.status) {
+      localStorage.setItem("jwt", data.token);
+      dispatch(setUserDetails(data.user));
       navigate("/")
+      console.log(data);
       toast.success(data.message);
     } else {
-      console.log(data);
       toast.error(data.message);
     }
   };
