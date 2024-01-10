@@ -12,6 +12,7 @@ function AdminRoutes() {
         <Route path='/home' element={<AdminHomepage/>}/>
         <Route path='/addDocument' element={<AddCertificatePage/>}/>
         <Route path='/addRequirement' element={<CertificateRequirement/>}/>
+
     </Routes>
   )
 }

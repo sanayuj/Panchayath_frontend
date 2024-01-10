@@ -20,14 +20,21 @@ function Requirement() {
 
   const onSubmit = (values,{resetForm}) => {
     console.log(values, "&&&");
-    addCertificateRequirement(values).then((res)=>{
-     if(res.data.status){
+    const [Id, certificateName] = values.certificateName.split(',');
+    const dataToSend = {
+      certRequirement: values.certRequirement,
+      certificateId: Id,
+      certificateName: certificateName,
+    };
+    console.log(dataToSend,"oooo");
+   addCertificateRequirement(dataToSend).then((res)=>{
+    if(res.data.status){
       toast.success(res.data.message)
       resetForm()
-     }else{
+    }else{
       toast.error("Unable to submit")
-     }
-    })
+    }
+   })
   };
 
   const validationSchema = Yup.object({
@@ -63,10 +70,11 @@ function Requirement() {
                 onBlur={formik.handleBlur}
                 value={formik.values.certificateName}
                 onChange={formik.handleChange}
+                aria-label="Select Certificate"
               >
                 <option value="" label="Select Certificate" />
                 {certificate.map((value, index) => (
-                  <option key={index} value={value.certificateName}>
+                  <option key={value._id} value={`${value._id},${value.certificateName}`}>
                     {value.certificateName}
                   </option>
                 ))}
@@ -85,7 +93,7 @@ function Requirement() {
           <div className="fformbold-mb-3">
             <div>
               <label htmlFor="certRequirement" className="formbold-form-label">
-                Requirements
+                Required Details
               </label>
               <textarea
                 name="certRequirement"
@@ -95,6 +103,8 @@ function Requirement() {
                 placeholder="separate using ',' "
                 value={formik.values.certRequirement}
                 onChange={formik.handleChange}
+                aria-label="Required Details"
+                
               />
             </div>
             {formik.touched.certRequirement && formik.errors.certRequirement ? (

@@ -1,14 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 import "./Header.css";
 import { Link, useNavigate } from "react-router-dom";
-import { userHeader } from "../../../Services/userApi";
+import { fetchAllCertificate, userHeader } from "../../../Services/userApi";
 import { useDispatch, useSelector } from "react-redux";
 import { setUserDetails } from "../../../Features/setUser";
 
 function Header() {
+  const [certificate, setCertificate] = useState([]);
   const user = useSelector((state) => state.user.value);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   useEffect(() => {
     userHeader()
       .then((res) => {
@@ -19,6 +21,9 @@ function Header() {
       .catch((err) => {
         console.log(err);
       });
+    fetchAllCertificate().then((res) => {
+      setCertificate(res.data.certificate);
+    });
   }, []);
   return (
     <div>
@@ -71,27 +76,14 @@ function Header() {
                   Certificates
                 </Link>
                 <ul class="dropdown-menu">
-                  <li>
-                    <Link class="dropdown-item" to={""}>
-                      Birth certificate
-                    </Link>
-                  </li>
-                  <li>
-                    <Link class="dropdown-item" to={""}>
-                      Death certificate
-                    </Link>
-                  </li>
-                  <li>
-                    <Link class="dropdown-item" to={""}>
-                      Marriage certificate
-                    </Link>
-                  </li>
+                  {certificate.map((value, index) => (
+                    <li key={index}>
+                      <Link class="dropdown-item" to={`/showRequirement/${value._id}`}>
+                        {value.certificateName}
+                      </Link>
+                    </li>
+                  ))}
                 </ul>
-              </li>
-              <li class="nav-item">
-                <Link class="nav-link" to={"/complaint"}>
-                  Complaint
-                </Link>
               </li>
             </ul>
           </div>

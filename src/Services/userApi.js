@@ -19,8 +19,18 @@ export const sendComplaint = (values) => {
   );
 };
 
+
+
 //GET METHODS
 
 export const userHeader = () => {
   return userInstance.get("/userheader");
 };
+
+export const fetchAllCertificate=()=>{
+  return userInstance.get("/fetchAllCertificate")
+}
+
+export const getCertificateDetails=(certId)=>{
+  return userInstance.get(`/fetchCertRequiredDetails/${certId}`)
+}
