@@ -33,14 +33,14 @@ const Sidebar = () => {
             <NavIcon>
               <AiFillFilePpt size={20} className="sidebarIcon" />
             </NavIcon>
-            <NavText>Uplaod</NavText>
-            <NavItem eventKey="/admin/training">
+            <NavText>Document</NavText>
+            <NavItem eventKey="/admin/addDocument">
               <NavIcon></NavIcon>
-              <NavText>Training Video</NavText>
+              <NavText>Add Certificate</NavText>
             </NavItem>
-            <NavItem eventKey="/admin/academic">
+            <NavItem eventKey="/admin/addRequirement">
               <NavIcon></NavIcon>
-              <NavText>Academic Class</NavText>
+              <NavText>Add requirement</NavText>
             </NavItem>
             <NavItem eventKey="/admin/announcement">
               <NavIcon></NavIcon>
