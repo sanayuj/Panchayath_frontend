@@ -2,6 +2,8 @@ import React from "react";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import "./BrithForm.css";
+import { applyCertificate } from "../../../Services/userApi";
+import { toast } from "react-toastify";
 function BrithForm() {
   const initialValues = {
     dateOfBrith: "",
@@ -14,8 +16,14 @@ function BrithForm() {
     addressProof:null
   };
 
-  const onSubmit = (values) => {
+  const onSubmit = async(values) => {
     try {
+      const {data}=await applyCertificate(values)
+      if(data.status){
+        toast.success(data.message)
+      }else{
+        toast.error("Unable to submit")
+      }
         console.log(values,"000");
     } catch (error) {
       console.log(error);
@@ -35,22 +43,16 @@ function BrithForm() {
     permanentAddress: Yup.string().required("* Permanent Address is required"),
     state: Yup.string().required("* State is required"),
     post: Yup.string().required("* Post/Zip code is required"),
-    locationOfBrith: Yup.string().required("* Location of Birth is required")
-    .required("* Address proof is required")
-    .test(
-      "fileType",
-      "Invalid file format. Supported formats: jpg, svg, jpeg",
-      (value) => {
-        if (!value) {
-          return false; // File not selected
-        }
-
-        const supportedFormats = ["jpg", "jpeg", "svg"];
-        const fileExtension = value.name.split(".").pop().toLowerCase();
-
-        return supportedFormats.includes(fileExtension);
+    locationOfBrith: Yup.string().required("* Brith location is required"),
+    addressProof: Yup.mixed()
+    .test("fileFormat", "Invalid file format", (value) => {
+      if (value) {
+        const allowedFormats = ["image/jpeg", "image/png", "image/jpg"];
+        return allowedFormats.includes(value.type);
       }
-    ),
+      return true;
+    })
+    .required("* This field is required"),
   });
   
   const formik = useFormik({
@@ -281,8 +283,9 @@ function BrithForm() {
                     id="addressProof"
                     className="formbold-form-input"
                     onBlur={formik.handleBlur}
-                    value={formik.values.addressProof}
-                    onChange={formik.handleChange}
+                    onChange={(event) => {
+                  formik.setFieldValue("addressProof", event.target.files[0]);
+                }}
                   />
                 </div>
                 {formik.touched.addressProof && formik.errors.addressProof ? (

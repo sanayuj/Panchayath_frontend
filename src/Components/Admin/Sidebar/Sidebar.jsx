@@ -42,7 +42,7 @@ const Sidebar = () => {
               <NavIcon></NavIcon>
               <NavText>Add Requirement</NavText>
             </NavItem>
-            <NavItem eventKey="/admin/announcement">
+            <NavItem eventKey="/admin/viewAppliedCert">
               <NavIcon></NavIcon>
               <NavText>Applied Certificate</NavText>
             </NavItem>

@@ -290,19 +290,7 @@ function Complaint() {
             </button>
           </form>
         </div>
-        {/* <div className="row-container">
-          <h2>Your Farms</h2>
-          {farmDetails.length === 0 ? (
-            <div className="emptyMessage">No farm details available</div>
-          ) : (
-            farmDetails.map((values, index) => (
-              <div key={index} className="showFarm">
-                {index + 1}. {values.farmName} - Licence ID :  {values.licenceID}
-                
-              </div>
-            ))
-          )}
-        </div> */}
+      
       </div>
     </div>
   );

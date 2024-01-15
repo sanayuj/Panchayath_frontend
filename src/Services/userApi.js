@@ -19,7 +19,14 @@ export const sendComplaint = (values) => {
   );
 };
 
-
+export const applyCertificate = (values) => {
+  console.log(values,"@@@@");
+  return userInstance.post(
+    "/applycertificate",
+    { ...values },
+    { headers: { "Content-Type": "multipart/form-data" } }
+  );
+};
 
 //GET METHODS
 
@@ -27,10 +34,10 @@ export const userHeader = () => {
   return userInstance.get("/userheader");
 };
 
-export const fetchAllCertificate=()=>{
-  return userInstance.get("/fetchAllCertificate")
-}
+export const fetchAllCertificate = () => {
+  return userInstance.get("/fetchAllCertificate");
+};
 
-export const getCertificateDetails=(certId)=>{
-  return userInstance.get(`/fetchCertRequiredDetails/${certId}`)
-}
+export const getCertificateDetails = (certId) => {
+  return userInstance.get(`/fetchCertRequiredDetails/${certId}`);
+};

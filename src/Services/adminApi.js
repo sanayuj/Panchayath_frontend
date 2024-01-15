@@ -39,3 +39,8 @@ export const userList=()=>{
 export const getAllCertificate=()=>{
     return adminInstance.get("/fetchAllCertificate")
 }
+
+export const appliedCertificate=()=>{
+    return adminInstance.get("/fetchAppliedCert")
+}
+
