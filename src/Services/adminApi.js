@@ -17,7 +17,6 @@ export const addCertificate=(values)=>{
 }
 
 export const addCertificateRequirement=(values)=>{
-    console.log(values,"888888");
     return adminInstance.post("/addrequirement",{...values})
 }
 

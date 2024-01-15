@@ -11,7 +11,6 @@ export const userLogin = (values) => {
 };
 
 export const sendComplaint = (values) => {
-  console.log(values, "!!");
   return userInstance.post(
     "/sendcomplaint",
     { ...values },
@@ -19,14 +18,19 @@ export const sendComplaint = (values) => {
   );
 };
 
-export const applyCertificate = (values) => {
-  console.log(values,"@@@@");
+export const applyCertificate = (values,userId) => {
   return userInstance.post(
     "/applycertificate",
-    { ...values },
+    { ...values,userId },
     { headers: { "Content-Type": "multipart/form-data" } }
   );
 };
+
+
+
+
+
+
 
 //GET METHODS
 

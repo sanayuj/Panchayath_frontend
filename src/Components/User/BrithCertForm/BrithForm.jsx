@@ -4,7 +4,11 @@ import { useFormik } from "formik";
 import "./BrithForm.css";
 import { applyCertificate } from "../../../Services/userApi";
 import { toast } from "react-toastify";
+import {useSelector} from "react-redux"
 function BrithForm() {
+  const user = useSelector((state) => state.user.value);
+  
+
   const initialValues = {
     dateOfBrith: "",
     nameOfFather: "",
@@ -13,18 +17,21 @@ function BrithForm() {
     state: "",
     post: "",
     locationOfBrith: "",
-    addressProof:null
+    addressProof:null,
+    
+
   };
 
-  const onSubmit = async(values) => {
+  const onSubmit = async(values,{resetForm}) => {
     try {
-      const {data}=await applyCertificate(values)
+
+      const {data}=await applyCertificate(values,user._id)
       if(data.status){
         toast.success(data.message)
+        resetForm()
       }else{
         toast.error("Unable to submit")
       }
-        console.log(values,"000");
     } catch (error) {
       console.log(error);
     }
