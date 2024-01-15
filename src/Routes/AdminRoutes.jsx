@@ -5,6 +5,7 @@ import AdminHomepage from '../Pages/Admin/AdminHomepage'
 import AddCertificatePage from '../Pages/Admin/AddCertificatePage'
 import CertificateRequirement from '../Pages/Admin/CertificateRequirement'
 import AppliedCertViewPage from '../Pages/Admin/AppliedCertViewPage'
+import ViewCertDetailsPage from '../Pages/Admin/ViewCertDetailsPage'
 
 function AdminRoutes() {
   return (
@@ -14,6 +15,7 @@ function AdminRoutes() {
         <Route path='/addDocument' element={<AddCertificatePage/>}/>
         <Route path='/addRequirement' element={<CertificateRequirement/>}/>
         <Route path='/viewAppliedCert' element={<AppliedCertViewPage/>}/>
+        <Route path='/viewCertDetails' element={<ViewCertDetailsPage/>}/>
 
     </Routes>
   )

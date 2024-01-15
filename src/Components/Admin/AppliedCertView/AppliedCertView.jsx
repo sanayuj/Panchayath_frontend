@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import "./AppliedCertView.css";
 import { appliedCertificate } from "../../../Services/adminApi";
+import { useNavigate } from "react-router-dom";
 
 function AppliedCertView() {
   const [appliedBrithCert, setAppliedBrithCert] = useState([]);
+  const navigate=useNavigate()
   useEffect(() => {
     appliedCertificate()
       .then((response) => {
-        console.log(response.data, "(((");
+        console.log(response.data.data, "(((");
         if (response.data.status) {
           setAppliedBrithCert(response.data.data);
         }
@@ -21,9 +23,12 @@ function AppliedCertView() {
       <h5>Applied Certificate</h5>
       {appliedBrithCert.map((values)=>(
         <div className="viewAppliedCert">
-        <div>Certificate name</div>
+        <div>{values.certName}</div>
         <div>
-          <button className="btn btn-primary">View</button>
+        <span className="dateView">Applied date : {new Date(values.date).toLocaleDateString("en-GB")}</span>
+          <button className="btn btn-primary"onClick={()=>{
+            navigate("/admin/viewCertDetails")
+          }} >View</button>
         </div>
       </div>
       ))}

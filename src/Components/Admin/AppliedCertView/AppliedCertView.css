@@ -13,5 +13,9 @@
     border-radius: 5px;
     display: flex;
     justify-content: space-between;
-    padding: 20px;
+    padding: 18px;
+}
+
+.dateView{
+    padding-right: 20px;
 }
