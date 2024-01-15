@@ -1,0 +1,371 @@
+import React from "react";
+import * as Yup from "yup";
+import { useFormik } from "formik";
+import "./BrithForm.css";
+function BrithForm() {
+  const initialValues = {
+    dateOfBrith: "",
+    nameOfFather: "",
+    nameOfMother: "",
+    permanentAddress: "",
+    state: "",
+    post: "",
+    locationOfBrith: "",
+    addressProof:null
+  };
+
+  const onSubmit = (values) => {
+    try {
+        console.log(values,"000");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const validationSchema = Yup.object({
+    dateOfBrith: Yup.date().required("* Date of Birth is required"),
+    nameOfFather: Yup.string()
+      .min(3, "* Name must be at least 3 characters long")
+      .matches(/^[A-Za-z]+$/, "* Name must only contain characters")
+      .required("* Name of Father is required"),
+    nameOfMother: Yup.string()
+      .min(3, "* Name must be at least 3 characters long")
+      .matches(/^[A-Za-z]+$/, "* Name must only contain characters")
+      .required("* Name of Mother is required"),
+    permanentAddress: Yup.string().required("* Permanent Address is required"),
+    state: Yup.string().required("* State is required"),
+    post: Yup.string().required("* Post/Zip code is required"),
+    locationOfBrith: Yup.string().required("* Location of Birth is required")
+    .required("* Address proof is required")
+    .test(
+      "fileType",
+      "Invalid file format. Supported formats: jpg, svg, jpeg",
+      (value) => {
+        if (!value) {
+          return false; // File not selected
+        }
+
+        const supportedFormats = ["jpg", "jpeg", "svg"];
+        const fileExtension = value.name.split(".").pop().toLowerCase();
+
+        return supportedFormats.includes(fileExtension);
+      }
+    ),
+  });
+  
+  const formik = useFormik({
+    initialValues,
+    onSubmit,
+    validationSchema,
+  });
+  return (
+    <div>
+      <div className="formbold-main-wrapper">
+        <div className="formbold-form-wrapper">
+          <form onSubmit={formik.handleSubmit}>
+            <div className="formbold-form-title">
+              <center>
+                {" "}
+                <h2 className="">Brith Certificate</h2>
+                <p>Fill the details</p>
+              </center>
+            </div>
+
+            <div className="formbold-input-flex">
+              <div>
+                <label for="firstname" className="formbold-form-label">
+                Date of Brith
+                </label>
+                <input
+                  type="date"
+                  name="dateOfBrith"
+                  id="dateOfBrith"
+                  className="formbold-form-input"
+                  onBlur={formik.handleBlur}
+                  value={formik.values.dateOfBrith}
+                  onChange={formik.handleChange}
+                />
+                {formik.touched.dateOfBrith && formik.errors.dateOfBrith ? (
+                  <p
+                    className="text-danger"
+                    style={{
+                      fontSize: "12px",
+                      margin: "0px",
+                      padding: "0px",
+                    }}
+                  >
+                    {formik.errors.dateOfBrith}
+                  </p>
+                ) : null}
+              </div>
+
+              <div className="fformbold-mb-3">
+                <div>
+                  <label for="phone" className="formbold-form-label">
+                    Name of father
+                  </label>
+                  <input
+                    type="text"
+                    name="nameOfFather"
+                    id="nameOfFather"
+                    className="formbold-form-input"
+                    onBlur={formik.handleBlur}
+                    value={formik.values.nameOfFather}
+                    onChange={formik.handleChange}
+                  />
+                </div>
+                {formik.touched.nameOfFather && formik.errors.nameOfFather ? (
+                  <p
+                    className="text-danger"
+                    style={{
+                      fontSize: "12px",
+                      margin: "0px",
+                      padding: "0px",
+                    }}
+                  >
+                    {formik.errors.nameOfFather}
+                  </p>
+                ) : null}
+              </div>
+            </div>
+
+            <div className="fformbold-mb-3">
+              <div>
+                <label for="nameOfMother" className="formbold-form-label">
+                  Name of mother
+                </label>
+                <input
+                  type="text"
+                  name="nameOfMother"
+                  id="nameOfMother"
+                  className="formbold-form-input"
+                  onBlur={formik.handleBlur}
+                  value={formik.values.nameOfMother}
+                  onChange={formik.handleChange}
+                />
+              </div>
+              {formik.touched.nameOfMother && formik.errors.nameOfMother ? (
+                <p
+                  className="text-danger"
+                  style={{
+                    fontSize: "12px",
+                    margin: "0px",
+                    padding: "0px",
+                  }}
+                >
+                  {formik.errors.nameOfMother}
+                </p>
+              ) : null}
+            </div>
+
+            <div className="formbold-mb-3">
+              <label for="permanentAddress" className="formbold-form-label">
+               Permanent Address
+              </label>
+              <textarea
+                type="text"
+                name="permanentAddress"
+                id="permanentAddress"
+                className="formbold-form-input"
+                onBlur={formik.handleBlur}
+                value={formik.values.permanentAddress}
+                onChange={formik.handleChange}
+              />
+              {formik.touched.permanentAddress && formik.errors.permanentAddress ? (
+                <p
+                  className="text-danger"
+                  style={{
+                    fontSize: "12px",
+                    margin: "0px",
+                    padding: "0px",
+                  }}
+                >
+                  {formik.errors.permanentAddress}
+                </p>
+              ) : null}
+            </div>
+
+            <div className="formbold-input-flex">
+              <div>
+                <label for="state" className="formbold-form-label">
+                  {" "}
+                  State{" "}
+                </label>
+                <input
+                  type="text"
+                  name="state"
+                  id="state"
+                  className="formbold-form-input"
+                  onBlur={formik.handleBlur}
+                  value={formik.values.state}
+                  onChange={formik.handleChange}
+                />
+                {formik.touched.state && formik.errors.state ? (
+                  <p
+                    className="text-danger"
+                    style={{
+                      fontSize: "12px",
+                      margin: "0px",
+                      padding: "0px",
+                    }}
+                  >
+                    {formik.errors.state}
+                  </p>
+                ) : null}
+              </div>
+
+              <div>
+                <label for="post" className="formbold-form-label">
+                {" "}
+                  Post/Zip code{" "}
+                </label>
+                <input
+                  type="text"
+                  name="post"
+                  id="post"
+                  className="formbold-form-input"
+                  onBlur={formik.handleBlur}
+                  value={formik.values.post}
+                  onChange={formik.handleChange}
+                />
+                {formik.touched.post && formik.errors.post ? (
+                  <p
+                    className="text-danger"
+                    style={{
+                      fontSize: "12px",
+                      margin: "0px",
+                      padding: "0px",
+                    }}
+                  >
+                    {formik.errors.post}
+                  </p>
+                ) : null}
+              </div>
+            </div>
+            <div className="formbold-input-flex">
+              <div>
+                <label for="locationOfBrith" className="formbold-form-label">
+                Location of brith
+                </label>
+                <input
+                  type="text"
+                  name="locationOfBrith"
+                  id="locationOfBrith"
+                  className="formbold-form-input"
+                  onBlur={formik.handleBlur}
+                  value={formik.values.locationOfBrith}
+                  onChange={formik.handleChange}
+                />
+                {formik.touched.locationOfBrith && formik.errors.locationOfBrith ? (
+                  <p
+                    className="text-danger"
+                    style={{
+                      fontSize: "12px",
+                      margin: "0px",
+                      padding: "0px",
+                    }}
+                  >
+                    {formik.errors.locationOfBrith}
+                  </p>
+                ) : null}
+              </div>
+
+              <div className="fformbold-mb-3">
+                <div>
+                  <label for="addressProof" className="formbold-form-label">
+                   Address proof
+                  </label>
+                  <input
+                    type="file"
+                    name="addressProof"
+                    id="addressProof"
+                    className="formbold-form-input"
+                    onBlur={formik.handleBlur}
+                    value={formik.values.addressProof}
+                    onChange={formik.handleChange}
+                  />
+                </div>
+                {formik.touched.addressProof && formik.errors.addressProof ? (
+                  <p
+                    className="text-danger"
+                    style={{
+                      fontSize: "12px",
+                      margin: "0px",
+                      padding: "0px",
+                    }}
+                  >
+                    {formik.errors.addressProof}
+                  </p>
+                ) : null}
+              </div>
+            </div>
+
+            {/* <div className="formbold-input-flex">
+              <div>
+                <label for="post" className="formbold-form-label">
+                  {" "}
+                  Post/Zip code{" "}
+                </label>
+                <input
+                  type="text"
+                  name="post"
+                  id="post"
+                  className="formbold-form-input"
+                  onBlur={formik.handleBlur}
+                  value={formik.values.post}
+                  onChange={formik.handleChange}
+                />
+                {formik.touched.post && formik.errors.post ? (
+                  <p
+                    className="text-danger"
+                    style={{
+                      fontSize: "12px",
+                      margin: "0px",
+                      padding: "0px",
+                    }}
+                  >
+                    {formik.errors.post}
+                  </p>
+                ) : null}
+              </div>
+              <div>
+                <label for="area" className="formbold-form-label">
+                  {" "}
+                  Poultry population{" "}
+                </label>
+                <input
+                  type="number"
+                  name="poultryPopulation"
+                  id="area"
+                  class="formbold-form-input"
+                  onBlur={formik.handleBlur}
+                  onChange={formik.handleChange}
+                  value={formik.values.poultryPopulation}
+                />
+                {formik.touched.poultryPopulation &&
+                formik.errors.poultryPopulation ? (
+                  <p
+                    className="text-danger"
+                    style={{
+                      fontSize: "12px",
+                      margin: "0px",
+                      padding: "0px",
+                    }}
+                  >
+                    {formik.errors.poultryPopulation}
+                  </p>
+                ) : null}
+              </div>
+            </div> */}
+
+            <button type="submit" className="formbold-btn">
+              Submit
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default BrithForm;
