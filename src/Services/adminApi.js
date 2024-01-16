@@ -20,6 +20,9 @@ export const addCertificateRequirement=(values)=>{
     return adminInstance.post("/addrequirement",{...values})
 }
 
+export const verifyCertificateapi=(userId,certId)=>{
+    return adminInstance.post(`/verifyCertificate/${userId}/${certId}`)
+}
 
 
 

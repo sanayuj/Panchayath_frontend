@@ -1,26 +1,40 @@
 // CertDetails.js
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import "./CertDetails.css";
 
-import { useParams } from 'react-router-dom';
-import { fetchSpecificCert } from '../../../Services/adminApi';
+import { useParams } from "react-router-dom";
+import {
+  fetchSpecificCert,
+  verifyCertificateapi,
+} from "../../../Services/adminApi";
+import { toast } from "react-toastify";
 
 function CertDetails() {
-  const certId=useParams().certId
+  const verifyCertificate = async (userId, certId) => {
+    const verifyData = await verifyCertificateapi(userId, certId);
+    if (verifyData.data.status) {
+      toast.success(verifyData.data.message);
+    } else {
+      toast.error("Unable to verify");
+    }
+  };
+  const certId = useParams().certId;
   const [certificate, setCertificate] = useState([]);
 
   useEffect(() => {
-   fetchSpecificCert(certId).then((response)=>{
-    console.log(response.data.certificateDetails);
-    setCertificate(response.data.certificateDetails)
-   }).catch((error)=>{
-    console.log(error);
-   })
+    fetchSpecificCert(certId)
+      .then((response) => {
+        console.log(response.data.certificateDetails);
+        setCertificate(response.data.certificateDetails);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }, []);
 
   return (
-    <div className='container-fluid'>
+    <div className="container-fluid">
       <div>
         <div className="formbold-main-wrapper">
           <div className="formbold-form-wrapper">
@@ -38,34 +52,46 @@ function CertDetails() {
               <div className="formbold-input-flex">
                 <div>
                   <label className="formbold-form-label">Name :</label>
-                  <div className="formbold-form-text">{certificate?.userId?.username}</div>
+                  <div className="formbold-form-text">
+                    {certificate?.userId?.username}
+                  </div>
                 </div>
 
                 <div className="fformbold-mb-3">
                   <div>
                     <label className="formbold-form-label">DOB :</label>
-                    <div className="formbold-form-text">{certificate?.dom}</div>
+                    <div className="formbold-form-text">{certificate?.dob}</div>
                   </div>
                 </div>
               </div>
 
               <div className="fformbold-mb-3">
                 <div>
-                  <label className="formbold-form-label">Name of Father : </label>
-                  <div className="formbold-form-text">{certificate?.nameOfFather}</div>
+                  <label className="formbold-form-label">
+                    Name of Father :{" "}
+                  </label>
+                  <div className="formbold-form-text">
+                    {certificate?.nameOfFather}
+                  </div>
                 </div>
               </div>
 
               <div className="fformbold-mb-3 mt-3">
                 <div>
-                  <label className="formbold-form-label">Name of Mother : </label>
-                  <div className="formbold-form-text">{certificate?.nameOfMother}</div>
+                  <label className="formbold-form-label">
+                    Name of Mother :{" "}
+                  </label>
+                  <div className="formbold-form-text">
+                    {certificate?.nameOfMother}
+                  </div>
                 </div>
               </div>
 
               <div className="formbold-mb-3 mt-3">
                 <label className="formbold-form-label">Address : </label>
-                <div className="formbold-form-textarea">{certificate?.address}</div>
+                <div className="formbold-form-textarea">
+                  {certificate?.address}
+                </div>
               </div>
 
               <div className="formbold-input-flex">
@@ -82,8 +108,12 @@ function CertDetails() {
 
               <div className="formbold-input-flex">
                 <div>
-                  <label className="formbold-form-label">Birth location :</label>
-                  <div className="formbold-form-text">{certificate?.brithLocation}</div>
+                  <label className="formbold-form-label">
+                    Birth location :
+                  </label>
+                  <div className="formbold-form-text">
+                    {certificate?.brithLocation}
+                  </div>
                 </div>
 
                 <div>
@@ -93,23 +123,40 @@ function CertDetails() {
               </div>
 
               <hr></hr>
-              <center><p>Respondent Details</p></center>
+              <center>
+                <p>Respondent Details</p>
+              </center>
               <hr></hr>
 
               <div className="fformbold-mb-3">
                 <div>
-                  <label className="formbold-form-label">Respondent Name :</label>
-                  <div className="formbold-form-text">{certificate?.userId?.username}</div>
+                  <label className="formbold-form-label">
+                    Respondent Name :
+                  </label>
+                  <div className="formbold-form-text">
+                    {certificate?.userId?.username}
+                  </div>
                 </div>
 
                 <div className="fformbold-mb-3 mt-3">
                   <div>
-                    <label className="formbold-form-label">Respondent Email :</label>
-                    <div className="formbold-form-text">{certificate?.userId?.email}</div>
+                    <label className="formbold-form-label">
+                      Respondent Email :
+                    </label>
+                    <div className="formbold-form-text">
+                      {certificate?.userId?.email}
+                    </div>
                   </div>
                 </div>
               </div>
-<button className='mt-4 btn btn-primary'>Verify</button>
+              <button
+                onClick={() => {
+                  verifyCertificate(certificate?.userId?._id, certificate._id);
+                }}
+                className="mt-4 btn btn-primary"
+              >
+                Verify
+              </button>
             </div>
           </div>
         </div>
