@@ -27,7 +27,7 @@ function AppliedCertView() {
         <div>
         <span className="dateView">Applied date : {new Date(values.date).toLocaleDateString("en-GB")}</span>
           <button className="btn btn-primary"onClick={()=>{
-            navigate("/admin/viewCertDetails")
+            navigate(`/admin/viewCertDetails/${values._id}`)
           }} >View</button>
         </div>
       </div>

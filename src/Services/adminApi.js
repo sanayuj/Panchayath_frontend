@@ -25,6 +25,7 @@ export const addCertificateRequirement=(values)=>{
 
 
 
+
 //GET methods
 
 export const adminHeader=()=>{
@@ -43,3 +44,6 @@ export const appliedCertificate=()=>{
     return adminInstance.get("/fetchAppliedCert")
 }
 
+export const fetchSpecificCert=(Id)=>{
+    return adminInstance.get(`/fetchSpecificCert/${Id}`)
+}

@@ -180,3 +180,10 @@ a {
         padding-left: calc(var(--nav-width) + 188px)
     }
 } */
+
+/* Sidebar.css */
+
+.sidenav {
+    height: 100vh; /* Set the height to 100% of the viewport height */
+    background-color: #333; /* Set your preferred background color */
+  }

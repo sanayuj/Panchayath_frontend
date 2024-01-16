@@ -15,7 +15,7 @@ function AdminRoutes() {
         <Route path='/addDocument' element={<AddCertificatePage/>}/>
         <Route path='/addRequirement' element={<CertificateRequirement/>}/>
         <Route path='/viewAppliedCert' element={<AppliedCertViewPage/>}/>
-        <Route path='/viewCertDetails' element={<ViewCertDetailsPage/>}/>
+        <Route path='/viewCertDetails/:certId' element={<ViewCertDetailsPage/>}/>
 
     </Routes>
   )

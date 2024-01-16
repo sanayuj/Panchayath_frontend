@@ -1,5 +1,5 @@
 import React from 'react';
-// import "./Sidebar.css"
+ import "./Sidebar.css"
 import { HiUsers } from "react-icons/hi";
 import { AiFillPieChart, AiFillFilePpt } from "react-icons/ai";
 import { BiCategory } from "react-icons/bi"
@@ -10,9 +10,9 @@ import { useNavigate } from 'react-router-dom';
 const Sidebar = () => {
   const navigate = useNavigate();
   return (
-    <div>
+    <div className='full-height-wrapper'>
       <SideNav
-        className="sidenav"
+        className="sidenav "
         onSelect={(selected) => {
           navigate(selected);
         }}
