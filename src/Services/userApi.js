@@ -32,6 +32,8 @@ export const applyCertificate = (values,userId) => {
 
 
 
+
+
 //GET METHODS
 
 export const userHeader = () => {
@@ -45,3 +47,7 @@ export const fetchAllCertificate = () => {
 export const getCertificateDetails = (certId) => {
   return userInstance.get(`/fetchCertRequiredDetails/${certId}`);
 };
+
+export const getUserAppliedCert=(userId)=>{
+  return userInstance.get(`/fetchUserAppliedCert/${userId}`)
+}

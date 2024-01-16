@@ -85,6 +85,11 @@ function Header() {
                   ))}
                 </ul>
               </li>
+              <li class="nav-item">
+                <Link class="nav-link" to={"/certStatus"}>
+                 Certificate Status
+                </Link>
+              </li>
             </ul>
           </div>
           {user ? (

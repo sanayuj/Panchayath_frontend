@@ -6,6 +6,7 @@ import Loginpage from '../Pages/User/Loginpage'
 import Complaintpage from '../Pages/User/Complaintpage'
 import ShowRequirementPage from '../Pages/User/ShowRequirementPage'
 import BrithFormpage from '../Pages/User/BrithFormpage'
+import UserCertStatusPage from '../Pages/User/UserCertStatusPage'
 
 
 function UserRoutes() {
@@ -18,6 +19,7 @@ function UserRoutes() {
     <Route path='/complaint' element={<Complaintpage/>}/>
     <Route path='/showRequirement/:id' element={<ShowRequirementPage/>}/>
     <Route path='/brithForm' element={<BrithFormpage/>}/>
+    <Route path='/certStatus' element={<UserCertStatusPage/>}/>
    </Routes>
    </div>
   )
