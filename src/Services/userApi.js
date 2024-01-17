@@ -45,9 +45,14 @@ export const fetchAllCertificate = () => {
 };
 
 export const getCertificateDetails = (certId) => {
+  console.log(certId,"!!!!");
   return userInstance.get(`/fetchCertRequiredDetails/${certId}`);
 };
 
 export const getUserAppliedCert=(userId)=>{
   return userInstance.get(`/fetchUserAppliedCert/${userId}`)
 }
+
+export const ViewBrithCertDetails = (certId) => {
+  return userInstance.get(`/fetchBrithCert/${certId}`);
+};

@@ -25,7 +25,7 @@ function CertDetails() {
   useEffect(() => {
     fetchSpecificCert(certId)
       .then((response) => {
-        console.log(response.data.certificateDetails);
+        console.log(response.data.certificateDetails, "$$$$8888$$$$");
         setCertificate(response.data.certificateDetails);
       })
       .catch((error) => {
@@ -120,8 +120,13 @@ function CertDetails() {
                   <label className="formbold-form-label">Applied Date :</label>
                   <div className="formbold-form-text">{certificate?.date}</div>
                 </div>
+              
               </div>
 
+              <div className="imageShow">
+              <label className="formbold-form-label">Address Proof :</label>
+                  <img src={`http://localhost:4000/Img/${certificate.addressProofImage}`} alt="" />
+                </div>
               <hr></hr>
               <center>
                 <p>Respondent Details</p>
@@ -149,14 +154,21 @@ function CertDetails() {
                   </div>
                 </div>
               </div>
-              <button
-                onClick={() => {
-                  verifyCertificate(certificate?.userId?._id, certificate._id);
-                }}
-                className="mt-4 btn btn-primary"
-              >
-                Verify
-              </button>
+              {certificate.certStatus ? (
+                <h3 className="verifiedStatus">Verified</h3>
+              ) : (
+                <button
+                  onClick={() => {
+                    verifyCertificate(
+                      certificate?.userId?._id,
+                      certificate._id
+                    );
+                  }}
+                  className="mt-4 btn btn-primary"
+                >
+                  Verify
+                </button>
+              )}
             </div>
           </div>
         </div>

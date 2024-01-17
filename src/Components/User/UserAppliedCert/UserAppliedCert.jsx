@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react'
 import "./UserAppliedCert.css"
 import { useSelector } from 'react-redux';
 import { getUserAppliedCert } from '../../../Services/userApi';
+import { useNavigate } from 'react-router-dom';
 
 function UserAppliedCert() {
+  const navigate=useNavigate()
     const [certStatus,setCertStatus]=useState([])
     const user = useSelector((state) => state.user.value);
     useEffect(()=>{
@@ -25,10 +27,16 @@ function UserAppliedCert() {
     <div className='certDetailsDiv'>
             <div className='statusCertName'>Certificate Name : {value.certName} </div>
             <div>Status : {value.certStatus ? 'Success' : 'Pending'}</div>
-            <div>
+            {/* <div>
             {value.certStatus ? (<button className='btn btn-primary'>
             Download <i class="bi bi-file-earmark-arrow-down-fill"></i>
+          </button>) : ""} </div> */}
+          
+           <div>
+            {value.certStatus ? (<button onClick={()=>navigate(`/brithCertView/${value._id}`)} className='btn btn-primary'>
+            View 
           </button>) : ""} </div>
+          
         </div>
  ))}
        
