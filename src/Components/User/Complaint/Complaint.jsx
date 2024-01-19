@@ -5,7 +5,10 @@ import * as Yup from "yup";
 import "./Complaint.css";
 import { sendComplaint } from "../../../Services/userApi";
 import { toast } from "react-toastify";
+import { useSelector } from "react-redux";
 function Complaint() {
+  const user = useSelector((state) => state?.user?.value);
+  const userId=user?._id
   const initialValues = {
     username: "",
     wardNumber: "",
@@ -17,7 +20,7 @@ function Complaint() {
   };
 
   const onSubmit = async(values,{resetForm}) => {
-    const {data}=await sendComplaint(values)
+    const {data}=await sendComplaint(values,userId)
     console.log(data);
     if(data.status){
       toast.success(data.message)

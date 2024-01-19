@@ -10,10 +10,10 @@ export const userLogin = (values) => {
   return userInstance.post("/login", { ...values });
 };
 
-export const sendComplaint = (values) => {
+export const sendComplaint = (values,userId) => {
   return userInstance.post(
     "/sendcomplaint",
-    { ...values },
+    { ...values,userId },
     { headers: { "Content-Type": "multipart/form-data" } }
   );
 };
@@ -45,7 +45,6 @@ export const fetchAllCertificate = () => {
 };
 
 export const getCertificateDetails = (certId) => {
-  console.log(certId,"!!!!");
   return userInstance.get(`/fetchCertRequiredDetails/${certId}`);
 };
 
@@ -56,3 +55,8 @@ export const getUserAppliedCert=(userId)=>{
 export const ViewBrithCertDetails = (certId) => {
   return userInstance.get(`/fetchBrithCert/${certId}`);
 };
+
+export const ViewComplaintStatus=(Id)=>{
+  console.log(Id,"999900009999");
+  return userInstance.get(`/viewcomplantStatus/${Id}`)
+}
