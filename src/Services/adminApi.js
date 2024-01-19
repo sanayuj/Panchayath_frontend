@@ -55,5 +55,9 @@ export const fetchAllComplaints=()=>{
 }
 
 export const fetchSpecificComplaint=(id)=>{
-    return adminInstance.get(`fetchSpecificComplaint/${id}`)
+    return adminInstance.get(`/fetchSpecificComplaint/${id}`)
+}
+
+export const changeComplaintStatus=(id)=>{
+    return adminInstance.get(`/changecomplaintstatus/${id}`)
 }

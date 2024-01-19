@@ -3,7 +3,9 @@ import "./ShowUserComplaints.css";
 import {
   fetchAllComplaints,
   fetchSpecificComplaint,
+  changeComplaintStatus,
 } from "../../../Services/adminApi";
+import { toast } from "react-toastify";
 function ShowUserComplaints() {
   const [certificate, setCertificate] = useState([]);
   const [detailsCert, setDetailCert] = useState([]);
@@ -36,6 +38,19 @@ function ShowUserComplaints() {
     minute: "2-digit",
     second: "2-digit",
     timeZoneName: "short",
+  };
+
+  const toogleComplaintStatus = (id) => {
+    console.log(id,"PP front");
+    changeComplaintStatus(id)
+      .then((res) => {
+if(res.data.status){
+  toast.success(res.data.message)
+}
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
   return (
     <div className="ShowUserComplaintsDiv">
@@ -71,21 +86,21 @@ function ShowUserComplaints() {
         aria-hidden="true"
       >
         <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="staticBackdropLabel">
-                Complaint Details
-              </h1>
+          {detailsCert.map((value) => (
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">
+                  Complaint Details
+                </h1>
 
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div class="modal-body">
-              {detailsCert.map((value) => (
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
                 <div>
                   <p>Name : {value.username}</p>
 
@@ -104,25 +119,28 @@ function ShowUserComplaints() {
                     src={`http://localhost:4000/Img/${value.imageUrl}`}
                   ></img>
                 </div>
-              ))}
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Close
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  data-bs-dismiss="modal"
+                  onClick={() => {
+                    toogleComplaintStatus(value._id);
+                  }}
+                >
+                  Verify
+                </button>
+              </div>
             </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                Close
-              </button>
-              <button
-                type="button"
-                class="btn btn-primary"
-                data-bs-dismiss="modal"
-              >
-                Understood
-              </button>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </div>
