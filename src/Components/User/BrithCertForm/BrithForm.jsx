@@ -10,7 +10,10 @@ function BrithForm() {
   
 
   const initialValues = {
+
     dateOfBrith: "",
+    childName:"",
+    hospitalName:"",
     nameOfFather: "",
     nameOfMother: "",
     permanentAddress: "",
@@ -38,6 +41,14 @@ function BrithForm() {
   };
 
   const validationSchema = Yup.object({
+    hospitalName:Yup.string()
+    .min(3, "* Name must be at least 3 characters long")
+    .matches(/^[A-Za-z]+$/, "* Name must only contain characters")
+    .required("* Name of Father is required"),
+    childName:Yup.string()
+    .min(3, "* Name must be at least 3 characters long")
+    .matches(/^[A-Za-z]+$/, "* Name must only contain characters")
+    .required("* Name of Father is required"),
     dateOfBrith: Yup.date().required("* Date of Birth is required"),
     nameOfFather: Yup.string()
       .min(3, "* Name must be at least 3 characters long")
@@ -110,20 +121,20 @@ function BrithForm() {
 
               <div className="fformbold-mb-3">
                 <div>
-                  <label for="phone" className="formbold-form-label">
-                    Name of father
+                  <label for="hospitalName" className="formbold-form-label">
+                  Hospital Name
                   </label>
                   <input
                     type="text"
-                    name="nameOfFather"
-                    id="nameOfFather"
+                    name="hospitalName"
+                    id="hospitalName"
                     className="formbold-form-input"
                     onBlur={formik.handleBlur}
-                    value={formik.values.nameOfFather}
+                    value={formik.values.hospitalName}
                     onChange={formik.handleChange}
                   />
                 </div>
-                {formik.touched.nameOfFather && formik.errors.nameOfFather ? (
+                {formik.touched.hospitalName && formik.errors.hospitalName ? (
                   <p
                     className="text-danger"
                     style={{
@@ -132,7 +143,7 @@ function BrithForm() {
                       padding: "0px",
                     }}
                   >
-                    {formik.errors.nameOfFather}
+                    {formik.errors.hospitalName}
                   </p>
                 ) : null}
               </div>
@@ -140,8 +151,64 @@ function BrithForm() {
 
             <div className="fformbold-mb-3">
               <div>
+                <label for="childName" className="formbold-form-label">
+                  Name of Child
+                </label>
+                <input
+                  type="text"
+                  name="childName"
+                  id="childName"
+                  className="formbold-form-input"
+                  onBlur={formik.handleBlur}
+                  value={formik.values.childName}
+                  onChange={formik.handleChange}
+                />
+              </div>
+              {formik.touched.childName && formik.errors.childName ? (
+                <p
+                  className="text-danger"
+                  style={{
+                    fontSize: "12px",
+                    margin: "0px",
+                    padding: "0px",
+                  }}
+                >
+                  {formik.errors.childName}
+                </p>
+              ) : null}
+            </div>
+            <div className="fformbold-mb-3">
+              <div>
+                <label for="nameOfFather" className="formbold-form-label">
+                  Name of Father
+                </label>
+                <input
+                  type="text"
+                  name="nameOfFather"
+                  id="nameOfFather"
+                  className="formbold-form-input"
+                  onBlur={formik.handleBlur}
+                  value={formik.values.nameOfFather}
+                  onChange={formik.handleChange}
+                />
+              </div>
+              {formik.touched.nameOfFather && formik.errors.nameOfFather ? (
+                <p
+                  className="text-danger"
+                  style={{
+                    fontSize: "12px",
+                    margin: "0px",
+                    padding: "0px",
+                  }}
+                >
+                  {formik.errors.nameOfFather}
+                </p>
+              ) : null}
+            </div>
+            <div className="fformbold-mb-3">
+              <div>
                 <label for="nameOfMother" className="formbold-form-label">
-                  Name of mother
+                  Name of Mother
                 </label>
                 <input
                   type="text"
@@ -379,3 +446,21 @@ function BrithForm() {
 }
 
 export default BrithForm;
+
+
+
+
+// <div>
+// <label for="phone" className="formbold-form-label">
+//   Name of father
+// </label>
+// <input
+//   type="text"
+//   name="nameOfFather"
+//   id="nameOfFather"
+//   className="formbold-form-input"
+//   onBlur={formik.handleBlur}
+//   value={formik.values.nameOfFather}
+//   onChange={formik.handleChange}
+// />
+// </div>

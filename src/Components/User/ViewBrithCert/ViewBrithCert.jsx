@@ -42,19 +42,20 @@ function ViewBrithCert() {
         </div>
 
         <div className="personal-info">
-          <p className="mt-5">
-            {" "}
-            <span>
-              <hr />{" "}
-            </span>
-            {certDetails.map((value) => (
+          {certDetails.map((value) => (
+            <p className="mt-5">
+              {" "}
+              <span className="babyName">
+                {value.childName}
+                <hr />{" "}
+              </span>
               <span className="mt-5">
                 {" "}
-                Was Born in {value?.brithLocation} to {value?.nameOfMother} and{" "}
-                {value?.nameOfFather} on {value?.dob}.
+                Was Born in {value.hospitalName},{value?.brithLocation} to{" "}
+                {value?.nameOfMother} and {value?.nameOfFather} on {value?.dob}.
               </span>
-            ))}
-          </p>
+            </p>
+          ))}
         </div>
         <div className="author">
           <div>
@@ -71,7 +72,12 @@ function ViewBrithCert() {
         </div>
       </div>
       <div className="downloadBtn">
-        <button className="btn btn-primary" onClick={()=>{handleDownload()}}>
+        <button
+          className="btn btn-primary"
+          onClick={() => {
+            handleDownload();
+          }}
+        >
           Download <i class="bi bi-file-earmark-arrow-down-fill"></i>
         </button>
       </div>

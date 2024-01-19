@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./ListUser.css";
-import { toogleBlock, userList } from "../../../Services/adminApi";
+import { fetchSpecificUserComplaint, toogleBlock, userList } from "../../../Services/adminApi";
 function ListUser() {
   const [userDetails, setUserDetails] = useState([]);
 
@@ -12,16 +12,22 @@ function ListUser() {
       )
     );
   };
+
+
+
+
   useEffect(() => {
     userList()
       .then((res) => {
-        console.log(res.data.userDetails, "----");
         setUserDetails(res.data.userDetails);
       })
       .catch((error) => {
         console.log(error);
       });
   }, []);
+
+
+
   return (
     <div className="mainDivUserList">
       <table className="table my-4">

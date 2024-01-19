@@ -28,6 +28,10 @@ const Sidebar = () => {
               <NavIcon></NavIcon>
               <NavText>Users List</NavText>
             </NavItem>
+            <NavItem eventKey="/admin/showUserComplaints">
+              <NavIcon></NavIcon>
+              <NavText>Users Complaints</NavText>
+            </NavItem>
           </NavItem>
           <NavItem eventKey="/">
             <NavIcon>

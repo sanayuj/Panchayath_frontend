@@ -50,3 +50,10 @@ export const appliedCertificate=()=>{
 export const fetchSpecificCert=(Id)=>{
     return adminInstance.get(`/fetchSpecificCert/${Id}`)
 }
+export const fetchAllComplaints=()=>{
+    return adminInstance.get("/fetchallComplaints")
+}
+
+export const fetchSpecificComplaint=(id)=>{
+    return adminInstance.get(`fetchSpecificComplaint/${id}`)
+}

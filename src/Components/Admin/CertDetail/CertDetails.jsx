@@ -53,14 +53,25 @@ function CertDetails() {
                 <div>
                   <label className="formbold-form-label">Name :</label>
                   <div className="formbold-form-text">
-                    {certificate?.userId?.username}
+                    {certificate?.childName}
                   </div>
                 </div>
+                
 
                 <div className="fformbold-mb-3">
                   <div>
                     <label className="formbold-form-label">DOB :</label>
                     <div className="formbold-form-text">{certificate?.dob}</div>
+                  </div>
+                </div>
+              </div>
+              <div className="fformbold-mb-3">
+                <div>
+                  <label className="formbold-form-label">
+                    Name of Hospital :{" "}
+                  </label>
+                  <div className="formbold-form-text mb-3">
+                    {certificate?.hospitalName}
                   </div>
                 </div>
               </div>

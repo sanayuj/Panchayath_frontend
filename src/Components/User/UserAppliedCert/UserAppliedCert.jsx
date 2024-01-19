@@ -24,13 +24,10 @@ function UserAppliedCert() {
  <h5 className='mb-4'>Applied Certificates</h5>
 
  {certStatus.map((value)=>(
-    <div className='certDetailsDiv'>
+    <div className='certDetailsDiv mb-3'>
             <div className='statusCertName'>Certificate Name : {value.certName} </div>
             <div>Status : {value.certStatus ? 'Success' : 'Pending'}</div>
-            {/* <div>
-            {value.certStatus ? (<button className='btn btn-primary'>
-            Download <i class="bi bi-file-earmark-arrow-down-fill"></i>
-          </button>) : ""} </div> */}
+            
           
            <div>
             {value.certStatus ? (<button onClick={()=>navigate(`/brithCertView/${value._id}`)} className='btn btn-primary'>
