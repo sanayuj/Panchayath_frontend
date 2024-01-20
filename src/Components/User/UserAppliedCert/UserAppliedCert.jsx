@@ -14,9 +14,8 @@ function UserAppliedCert() {
   const user = useSelector((state) => state?.user?.value);
 
   const complaint = (userId) => {
-    console.log(userId, "%%%%%%))))%%%%%");
+
     ViewComplaintStatus(userId).then((res) => {
-      console.log(res.data, "888888*****888888");
       if (res.data.status) {
         setComplaintData(res.data.Details);
       }

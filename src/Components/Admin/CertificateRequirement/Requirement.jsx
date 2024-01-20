@@ -72,9 +72,9 @@ function Requirement() {
                 onChange={formik.handleChange}
                 aria-label="Select Certificate"
               >
-                <option value="" label="Select Certificate" />
+                <option value=""   className="formbold-form-input" label="Select Certificate" />
                 {certificate.map((value, index) => (
-                  <option key={value._id} value={`${value._id},${value.certificateName}`}>
+                  <option   className="formbold-form-input" key={value._id} value={`${value._id},${value.certificateName}`}>
                     {value.certificateName}
                   </option>
                 ))}

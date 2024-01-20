@@ -51,14 +51,14 @@ const Sidebar = () => {
               <NavText>Applied Certificate</NavText>
             </NavItem>
           </NavItem>
-          <NavItem eventKey="/admin/home">
+          <NavItem eventKey="/admin/addProject">
             <NavIcon>
               <BiCategory size={20} className="sidebarIcon" />
             </NavIcon>
-            <NavText>Requests</NavText>
-            <NavItem eventKey="/admin/donationreq">
+            <NavText>Uploads</NavText>
+            <NavItem eventKey="/admin/addProject">
               <NavIcon></NavIcon>
-              <NavText>Donation Requests</NavText>
+              <NavText>Upload Project</NavText>
             </NavItem>
             <NavItem eventKey="/admin/userspost">
               <NavIcon></NavIcon>
