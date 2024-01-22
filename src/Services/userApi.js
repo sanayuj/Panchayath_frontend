@@ -57,6 +57,10 @@ export const ViewBrithCertDetails = (certId) => {
 };
 
 export const ViewComplaintStatus=(Id)=>{
-  console.log(Id,"999900009999");
   return userInstance.get(`/viewcomplantStatus/${Id}`)
 }
+
+export const getAllProjects=()=>{
+  return userInstance.get("/fetchprojectDetails")
+}
+

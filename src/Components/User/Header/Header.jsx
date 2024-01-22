@@ -50,12 +50,7 @@ function Header() {
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <Link class="nav-link active" aria-current="page" to={"/"}>
-                  Home
-                </Link>
-              </li>
-              <li class="nav-item">
-                <Link class="nav-link" to={""}>
+                <Link class="nav-link" to={"/viewProjects"}>
                   Projects
                 </Link>
               </li>
