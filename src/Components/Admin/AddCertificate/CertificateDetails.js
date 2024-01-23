@@ -15,7 +15,7 @@ function CertificateDetails() {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, );
 
   const initialValues = {
     certName: "",

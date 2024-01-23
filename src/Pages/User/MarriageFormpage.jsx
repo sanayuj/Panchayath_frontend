@@ -1,17 +1,16 @@
 import React from "react";
-import UserAppliedCert from "../../Components/User/UserAppliedCert/UserAppliedCert";
+import MarriageForm from "../../Components/User/MarriageForm/MarriageForm";
 import Header from "../../Components/User/Header/Header";
 import Footer from "../../Components/User/Footer/Footer";
 
-function UserCertStatusPage() {
+function MarriageFormpage() {
   return (
     <div>
       <Header />
-      <UserAppliedCert />
-      <Footer/>
+      <MarriageForm />
+      <Footer />
     </div>
   );
 }
 
-export default UserCertStatusPage;
- 
+export default MarriageFormpage;

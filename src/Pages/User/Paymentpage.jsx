@@ -1,17 +1,16 @@
 import React from "react";
-import UserAppliedCert from "../../Components/User/UserAppliedCert/UserAppliedCert";
+import Payment from "../../Components/User/Payment/Payment";
 import Header from "../../Components/User/Header/Header";
 import Footer from "../../Components/User/Footer/Footer";
 
-function UserCertStatusPage() {
+function Paymentpage() {
   return (
     <div>
       <Header />
-      <UserAppliedCert />
+      <Payment />
       <Footer/>
     </div>
   );
 }
 
-export default UserCertStatusPage;
- 
+export default Paymentpage;

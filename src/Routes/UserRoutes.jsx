@@ -9,6 +9,8 @@ import BrithFormpage from '../Pages/User/BrithFormpage'
 import UserCertStatusPage from '../Pages/User/UserCertStatusPage'
 import ViewBrithCertpage from '../Pages/User/ViewBrithCertpage'
 import ProjectDisplaypage from '../Pages/User/ProjectDisplaypage'
+import Paymentpage from '../Pages/User/Paymentpage'
+import MarriageFormpage from '../Pages/User/MarriageFormpage'
 
 
 function UserRoutes() {
@@ -20,10 +22,12 @@ function UserRoutes() {
     <Route path='/login' element={<Loginpage/>}/>
     <Route path='/complaint' element={<Complaintpage/>}/>
     <Route path='/showRequirement/:id' element={<ShowRequirementPage/>}/>
-    <Route path='/brithForm' element={<BrithFormpage/>}/>
+    <Route path='/Brith' element={<BrithFormpage/>}/>
     <Route path='/certStatus' element={<UserCertStatusPage/>}/>
     <Route path='/brithCertView/:id' element={<ViewBrithCertpage/>}/>
     <Route path='/viewProjects' element={<ProjectDisplaypage/>}/>
+    <Route path='/payment' element={<Paymentpage/>}/>
+    <Route path='/Marriage' element={<MarriageFormpage/>}/>
    </Routes>
    </div>
   )

@@ -55,7 +55,7 @@ function Header() {
                 </Link>
               </li>
               <li class="nav-item">
-                <Link class="nav-link" to={""}>
+                <Link class="nav-link" to={"/payment"}>
                   Bill payment
                 </Link>
               </li>
