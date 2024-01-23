@@ -1,34 +1,57 @@
-import React, { useEffect } from 'react'
-import "./ProjectDisplay.css"
-import { getAllProjects } from '../../../Services/userApi';
-const [project,setProject]=useState([])
+import React, { useEffect, useState } from "react";
+import "./ProjectDisplay.css";
+import { getAllProjects } from "../../../Services/userApi";
+import { Link } from "react-router-dom";
+
 function ProjectDisplay() {
-    useEffect(()=>{
-        getAllProjects().then((res)=>{
-            console.log(res.data.data);
-            setProject(res.data.data)
-        })
-    },[])
+  const [project, setProject] = useState([]);
+  useEffect(() => {
+    getAllProjects().then((res) => {
+      console.log(res.data.data);
+      setProject(res.data.data);
+    });
+  }, []);
   return (
     <div>
-    <h4 className='m-4 '>Panchayath's Projects</h4>
-    <div className="accordion container-fluid accordionMainDiv" id="accordionPanelsStayOpenExample">
-    <div className="accordion-item myAccordion">
-      <h2 className="accordion-header">
-        <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-          Accordion Item #1
-        </button>
-      </h2>
-      <div id="panelsStayOpen-collapseOne" className="accordion-collapse collapse show">
-        <div className="accordion-body">
-          <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classNamees that we use to style each element. These classNamees control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-        </div>
+      <h4 className="m-4 ">Panchayath's Projects</h4>
+      <div
+        className="accordion container-fluid accordionMainDiv"
+        id="accordionPanelsStayOpenExample"
+      >
+        {project.map((value) => (
+          <div className="accordion-item myAccordion">
+            <h2 className="accordion-header">
+              <button
+                className="accordion-button"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#panelsStayOpen-collapseOne"
+                aria-expanded="true"
+                aria-controls="panelsStayOpen-collapseOne"
+              >
+                {value.projectName}
+              </button>
+            </h2>
+            <div
+              id="panelsStayOpen-collapseOne"
+              className="accordion-collapse collapse show"
+            >
+             <span className="projectDate"><strong>Date : </strong>{value.Date}</span> 
+             <div className="accordion-body">
+          <div className="descriptionDiv">
+            <div className="projectImg"><img className="Pimage" src={`http://localhost:4000/Img/${value.projectImage}`}/></div>
+<div className="projectDesc">  {value.projectDescription}</div>
+
+          </div>
+          <div className="website">Website : <Link>{value.website}</Link></div>
+           
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
-    </div>
-    
-  </div>
-  )
+  );
 }
 
-export default ProjectDisplay
+export default ProjectDisplay;

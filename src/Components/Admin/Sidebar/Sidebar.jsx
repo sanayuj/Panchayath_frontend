@@ -60,10 +60,10 @@ const Sidebar = () => {
               <NavIcon></NavIcon>
               <NavText>Upload Project</NavText>
             </NavItem>
-            <NavItem eventKey="/admin/userspost">
+            {/* <NavItem eventKey="/admin/userspost">
               <NavIcon></NavIcon>
               <NavText>User's Post</NavText>
-            </NavItem>
+            </NavItem> */}
           </NavItem>
         </SideNav.Nav>
       </SideNav>
