@@ -14,7 +14,6 @@ function UserAppliedCert() {
   const user = useSelector((state) => state?.user?.value);
 
   const complaint = (userId) => {
-
     ViewComplaintStatus(userId).then((res) => {
       if (res.data.status) {
         setComplaintData(res.data.Details);
@@ -58,13 +57,13 @@ function UserAppliedCert() {
       ))}
 
       <h5 className="mt-4 mb-4">Complaint Status</h5>
-{complaintData.map((value)=>(
-      <div className="certDetailsDiv mb-3 ">
-        <div className="statusCertName">Complaint : {value.complaintTopic}</div>
-        <div>Status : {value.complaintStatus ? 'Viewed' : 'Pending'}</div>
-
-       
-      </div>
+      {complaintData.map((value) => (
+        <div className="certDetailsDiv mb-3 ">
+          <div className="statusCertName">
+            Complaint : {value.complaintTopic}
+          </div>
+          <div>Status : {value.complaintStatus ? "Viewed" : "Pending"}</div>
+        </div>
       ))}
     </div>
   );
