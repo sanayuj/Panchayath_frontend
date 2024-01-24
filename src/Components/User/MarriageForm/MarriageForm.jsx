@@ -11,19 +11,28 @@ function MarriageForm() {
     placeOfMarriage: "",
     husName: "",
     husNationality: "",
-    husAgeProofImg: null,
+    wifeAgeProofImghusAgeProofImg: null,
     husbandImg: null,
     husOccupation: "",
     husbandAddress: "",
     husFatherName: "",
     husMotherName: "",
     husPreviousMaritalStatus: "",
+    WifeName: "",
+    WifeImg: null,
+    wifeNationality: "",
+    wifeAgeProofImg: "",
+    wifeAddress: "",
+    wifeFatherName: "",
+    wifeMotherName: "",
+    wifePreviousMaritalStatus: "",
   };
 
   const onSubmit = async (values, { resetForm }) => {};
   const validationSchema = Yup.object({
     dateOfMarriage: Yup.date().required("* This field is required"),
     placeOfMarriage: Yup.string().required("* This field is required"),
+    witnessName: Yup.string().required("* This field is required"),
     husName: Yup.string().required("* This field is required"),
     husFatherName: Yup.string().required("* This field is required"),
     husMotherName: Yup.string().required("* This field is required"),
@@ -56,7 +65,40 @@ function MarriageForm() {
       })
       .required("* This field is required"),
     husOccupation: Yup.string().required("* This field is required"),
-    complaintDescription: Yup.string().required("* This field is required"),
+    WifeName: Yup.string().required("* This field is required"),
+    WifeImg: Yup.mixed()
+      .test("fileSize", "File size is too large", (value) => {
+        if (value) return value.size <= 8 * 1024 * 1024;
+        return true;
+      })
+      .test("fileFormat", "Invalid file format", (value) => {
+        if (value) {
+          const allowedFormats = ["image/jpeg", "image/png", "image/jpg"];
+          return allowedFormats.includes(value.type);
+        }
+        return true;
+      })
+      .required("* This field is required"),
+    wifeNationality: Yup.string().required("* This field is required"),
+    wifeAgeProofImg: Yup.mixed()
+      .test("fileSize", "File size is too large", (value) => {
+        if (value) return value.size <= 8 * 1024 * 1024;
+        return true;
+      })
+      .test("fileFormat", "Invalid file format", (value) => {
+        if (value) {
+          const allowedFormats = ["image/jpeg", "image/png", "image/jpg"];
+          return allowedFormats.includes(value.type);
+        }
+        return true;
+      })
+      .required("* This field is required"),
+    wifeAddress: Yup.string().required("* This field is required"),
+    wifeFatherName: Yup.string().required("* This field is required"),
+    wifeMotherName: Yup.string().required("* This field is required"),
+    wifePreviousMaritalStatus: Yup.string().required(
+      "* This field is required"
+    ),
   });
 
   const formik = useFormik({
@@ -402,6 +444,236 @@ function MarriageForm() {
               <p>Wife's Details</p>
             </center>
             <hr />
+
+            <div className="fformbold-mb-3">
+              <div>
+                <label for="WifeName" className="formbold-form-label">
+                  Name
+                </label>
+                <input
+                  type="text"
+                  name="WifeName"
+                  id="WifeName"
+                  className="formbold-form-input"
+                  onBlur={formik.handleBlur}
+                  value={formik.values.WifeName}
+                  onChange={formik.handleChange}
+                />
+              </div>
+              {formik.touched.WifeName && formik.errors.WifeName ? (
+                <p
+                  className="text-danger"
+                  style={{
+                    fontSize: "12px",
+                    margin: "0px",
+                    padding: "0px",
+                  }}
+                >
+                  {formik.errors.WifeName}
+                </p>
+              ) : null}
+            </div>
+
+            <div className="formbold-mb-3">
+              <label for="WifeImg" className="formbold-form-label">
+                Photo
+              </label>
+              <input
+                type="File"
+                name="WifeImg"
+                id="WifeImg"
+                className="formbold-form-input"
+                onBlur={formik.handleBlur}
+                onChange={(event) => {
+                  formik.setFieldValue("WifeImg", event.target.files[0]);
+                }}
+              />
+              {formik.touched.WifeImg && formik.errors.WifeImg ? (
+                <p
+                  className="text-danger"
+                  style={{
+                    fontSize: "12px",
+                    margin: "0px",
+                    padding: "0px",
+                  }}
+                >
+                  {formik.errors.WifeImg}
+                </p>
+              ) : null}
+            </div>
+            <div className="formbold-mb-3">
+              <label for="Nationality" className="formbold-form-label">
+                Nationality
+              </label>
+              <input
+                type="text"
+                name="wifeNationality"
+                id="wifeNationality"
+                className="formbold-form-input"
+                onBlur={formik.handleBlur}
+                value={formik.values.wifeNationality}
+                onChange={formik.handleChange}
+              />
+              {formik.touched.wifeNationality &&
+              formik.errors.wifeNationality ? (
+                <p
+                  className="text-danger"
+                  style={{
+                    fontSize: "12px",
+                    margin: "0px",
+                    padding: "0px",
+                  }}
+                >
+                  {formik.errors.wifeNationality}
+                </p>
+              ) : null}
+            </div>
+            <div className="formbold-mb-3">
+              <label for="wifeAgeProofImg" className="formbold-form-label">
+                Age proof
+              </label>
+              <input
+                type="File"
+                name="wifeAgeProofImg"
+                id="wifeAgeProofImg"
+                className="formbold-form-input"
+                onBlur={formik.handleBlur}
+                onChange={(event) => {
+                  formik.setFieldValue(
+                    "wifeAgeProofImg",
+                    event.target.files[0]
+                  );
+                }}
+              />
+              {formik.touched.wifeAgeProofImg &&
+              formik.errors.wifeAgeProofImg ? (
+                <p
+                  className="text-danger"
+                  style={{
+                    fontSize: "12px",
+                    margin: "0px",
+                    padding: "0px",
+                  }}
+                >
+                  {formik.errors.wifeAgeProofImg}
+                </p>
+              ) : null}
+            </div>
+
+            <div className="formbold-mb-3">
+              <label for="address" className="formbold-form-label">
+                Address
+              </label>
+              <textarea
+                type="text"
+                name="wifeAddress"
+                id="wifeAddress"
+                className="formbold-form-input"
+                onBlur={formik.handleBlur}
+                value={formik.values.wifeAddress}
+                onChange={formik.handleChange}
+              />
+              {formik.touched.wifeAddress && formik.errors.wifeAddress ? (
+                <p
+                  className="text-danger"
+                  style={{
+                    fontSize: "12px",
+                    margin: "0px",
+                    padding: "0px",
+                  }}
+                >
+                  {formik.errors.wifeAddress}
+                </p>
+              ) : null}
+            </div>
+            <div className="formbold-mb-3">
+              <label for="wifeFatherName" className="formbold-form-label">
+                Father's Name
+              </label>
+              <input
+                type="text"
+                name="wifeFatherName"
+                id="wifeFatherName"
+                className="formbold-form-input"
+                onBlur={formik.handleBlur}
+                value={formik.values.wifeFatherName}
+                onChange={formik.handleChange}
+              />
+              {formik.touched.wifeFatherName && formik.errors.wifeFatherName ? (
+                <p
+                  className="text-danger"
+                  style={{
+                    fontSize: "12px",
+                    margin: "0px",
+                    padding: "0px",
+                  }}
+                >
+                  {formik.errors.wifeFatherName}
+                </p>
+              ) : null}
+            </div>
+            <div className="formbold-mb-3">
+              <label for="wifeMotherName" className="formbold-form-label">
+                Mother's Name
+              </label>
+              <input
+                type="text"
+                name="wifeMotherName"
+                id="wifeMotherName"
+                className="formbold-form-input"
+                onBlur={formik.handleBlur}
+                value={formik.values.wifeMotherName}
+                onChange={formik.handleChange}
+              />
+              {formik.touched.wifeMotherName && formik.errors.wifeMotherName ? (
+                <p
+                  className="text-danger"
+                  style={{
+                    fontSize: "12px",
+                    margin: "0px",
+                    padding: "0px",
+                  }}
+                >
+                  {formik.errors.wifeMotherName}
+                </p>
+              ) : null}
+            </div>
+
+            <div className="formbold-mb-3">
+              <label
+                htmlFor="wifePreviousMaritalStatus"
+                className="formbold-form-label"
+              >
+                Previous Marital Status
+              </label>
+              <select
+                name="wifePreviousMaritalStatus"
+                id="wifePreviousMaritalStatus"
+                className="formbold-form-input"
+                onBlur={formik.handleBlur}
+                value={formik.values.wifePreviousMaritalStatus}
+                onChange={formik.handleChange}
+              >
+                <option value="" label="Select One" />
+                <option value="single" label="Single" />
+                <option value="married" label="Married" />
+                <option value="divorced" label="Divorced" />
+                <option value="widowed" label="Widowed" />
+              </select>
+              {formik.touched.wifePreviousMaritalStatus &&
+              formik.errors.wifePreviousMaritalStatus ? (
+                <p
+                  className="text-danger"
+                  style={{
+                    fontSize: "12px",
+                    margin: "0px",
+                    padding: "0px",
+                  }}
+                >
+                  {formik.errors.wifePreviousMaritalStatus}
+                </p>
+              ) : null}
+            </div>
 
             <button type="submit" className="formbold-btn">
               Submit
