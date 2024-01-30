@@ -8,6 +8,7 @@ import AppliedCertViewPage from '../Pages/Admin/AppliedCertViewPage'
 import ViewCertDetailsPage from '../Pages/Admin/ViewCertDetailsPage'
 import ShowUserComplaintsPage from '../Pages/Admin/ShowUserComplaintsPage'
 import AddProjectPage from '../Pages/Admin/AddProjectPage'
+import MarriageCertpage from '../Pages/Admin/MarriageCertpage'
 
 function AdminRoutes() {
   return (
@@ -20,6 +21,7 @@ function AdminRoutes() {
         <Route path='/viewCertDetails/:certId' element={<ViewCertDetailsPage/>}/>
         <Route path='/showUserComplaints' element={<ShowUserComplaintsPage/>}/>
         <Route path='/addProject' element={<AddProjectPage/>}/>
+        <Route path='/marriageCertDetails/:certId' element={<MarriageCertpage/>} />
     </Routes>
   )
 }

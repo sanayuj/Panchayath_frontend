@@ -28,6 +28,7 @@ function UserRoutes() {
     <Route path='/viewProjects' element={<ProjectDisplaypage/>}/>
     <Route path='/payment' element={<Paymentpage/>}/>
     <Route path='/Marriage' element={<MarriageFormpage/>}/>
+    
    </Routes>
    </div>
   )

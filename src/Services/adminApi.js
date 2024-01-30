@@ -22,8 +22,11 @@ export const verifyCertificateapi = (userId, certId) => {
   return adminInstance.post(`/verifyCertificate/${userId}/${certId}`);
 };
 
+export const verifyMarriageCert=(userId,certId)=>{
+  return adminInstance.post(`/verifyMarriageCert/${userId}/${certId}`)
+}
+
 export const uploadProjectDetails = (values) => {
-  console.log(values, "^^^^^^^^");
   return adminInstance.post(
     "/addProjectDetails",
     { ...values },
@@ -63,3 +66,12 @@ export const fetchSpecificComplaint = (id) => {
 export const changeComplaintStatus = (id) => {
   return adminInstance.get(`/changecomplaintstatus/${id}`);
 };
+
+export const fetchAllMarriageCert=()=>{
+  return adminInstance.get("/fetchallmarriageCert");
+}
+
+export const fetchSpecificMarriageCert=(id)=>{
+  return adminInstance.get(`/fetchmarriageCert/${id}`)
+}
+
