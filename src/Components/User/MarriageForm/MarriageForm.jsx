@@ -4,6 +4,7 @@ import * as Yup from "yup";
 import { toast } from "react-toastify";
 
 import { useSelector } from "react-redux";
+import { uploadMarriageCertDetails } from "../../../Services/userApi";
 
 function MarriageForm() {
   const user = useSelector((state) => state?.user?.value);
@@ -11,6 +12,9 @@ function MarriageForm() {
   const userId = user?._id;
 
   const initialValues = {
+    DateOfMarriage: "",
+    PlaceOfMarriage: "",
+
     HusbandName: "",
     HusbandDateOfBrith: "",
     HusbandNationality: "",
@@ -30,6 +34,14 @@ function MarriageForm() {
 
   const onSubmit = async (values, { resetForm }) => {
     console.log(values);
+    const {data}= await uploadMarriageCertDetails(values,userId)
+    console.log(data);
+    if(data.status){
+      toast.success(data.message)
+      resetForm ()
+    }else{
+      toast.error("Unable to submit")
+    }
   };
   const validationSchema = Yup.object({
     HusbandName: Yup.string()
@@ -44,6 +56,18 @@ function MarriageForm() {
       .matches(/^[A-Za-z]+$/, "* Name must only contain characters")
       .required("* This field is required"),
     HusbandDateOfBrith: Yup.string().required("* This field is required"),
+    DateOfMarriage: Yup.string().required("* This field is required"),
+    PlaceOfMarriage: Yup.string()
+      .strict(true)
+      .trim("* Name must not contain white space")
+      .test(
+        "* no-whitespace",
+        "* Name must not contain white space",
+        (value) => !/\s/.test(value)
+      )
+      .min(3, "*Name must be at least 3 characters long")
+      .matches(/^[A-Za-z]+$/, "* Name must only contain characters")
+      .required("* This field is required"),
     HusbandNationality: Yup.string()
       .strict(true)
       .trim("* Name must not contain white space")
@@ -165,7 +189,73 @@ function MarriageForm() {
                 <p>Fill the details of your Marriage</p>
               </center>
             </div>
+            <div className="formbold-input-flex">
+              {/* Date of marriage */}
+              <div>
+                <label for="firstname" className="formbold-form-label">
+                  Date of Marriage
+                </label>
+                <input
+                  type="date"
+                  name="DateOfMarriage"
+                  id="DateOfMarriage"
+                  className="formbold-form-input"
+                  onBlur={formik.handleBlur}
+                  value={formik.values.DateOfMarriage}
+                  onChange={formik.handleChange}
+                />
+                {formik.touched.DateOfMarriage &&
+                formik.errors.DateOfMarriage ? (
+                  <p
+                    className="text-danger"
+                    style={{
+                      fontSize: "12px",
+                      margin: "0px",
+                      padding: "0px",
+                    }}
+                  >
+                    {formik.errors.DateOfMarriage}
+                  </p>
+                ) : null}
+              </div>
+              {/* Date of marriage */}
 
+              {/* {Place of Marriage} */}
+              <div>
+                <label for="firstname" className="formbold-form-label">
+                  Place of Marriage
+                </label>
+                <input
+                  type="text"
+                  name="PlaceOfMarriage"
+                  id="PlaceOfMarriage"
+                  className="formbold-form-input"
+                  onBlur={formik.handleBlur}
+                  value={formik.values.PlaceOfMarriage}
+                  onChange={formik.handleChange}
+                />
+                {formik.touched.PlaceOfMarriage &&
+                formik.errors.PlaceOfMarriage ? (
+                  <p
+                    className="text-danger"
+                    style={{
+                      fontSize: "12px",
+                      margin: "0px",
+                      padding: "0px",
+                    }}
+                  >
+                    {formik.errors.PlaceOfMarriage}
+                  </p>
+                ) : null}
+              </div>
+              {/* {Husband DOB} */}
+            </div>
+
+            <hr></hr>
+            <center>
+              <p>Husband Details</p>
+            </center>
+            <hr></hr>
             <div className="formbold-input-flex">
               {/* Husband Name */}
               <div>
