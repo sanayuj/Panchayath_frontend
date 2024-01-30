@@ -63,3 +63,7 @@ export const ViewComplaintStatus = (Id) => {
 export const getAllProjects = () => {
   return userInstance.get("/fetchprojectDetails");
 };
+
+export const getAllMarriageCert=(userId)=>{
+  return userInstance.get(`/fetchmarriageCert/${userId}`)
+}
