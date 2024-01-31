@@ -25,7 +25,6 @@ function UserAppliedCert() {
 
   const marriageCert=(userId)=>{
     getAllMarriageCert(userId).then((res)=>{
-      console.log(res.data,"&&&&&&&&&7777777&&")
       if(res.data.status){
        
         setMarriageCertDetails(res.data.data)

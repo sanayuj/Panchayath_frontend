@@ -11,6 +11,7 @@ import ViewBrithCertpage from '../Pages/User/ViewBrithCertpage'
 import ProjectDisplaypage from '../Pages/User/ProjectDisplaypage'
 import Paymentpage from '../Pages/User/Paymentpage'
 import MarriageFormpage from '../Pages/User/MarriageFormpage'
+import ViewMarriageCertPage from '../Pages/User/ViewMarriageCertPage'
 
 
 function UserRoutes() {
@@ -28,6 +29,7 @@ function UserRoutes() {
     <Route path='/viewProjects' element={<ProjectDisplaypage/>}/>
     <Route path='/payment' element={<Paymentpage/>}/>
     <Route path='/Marriage' element={<MarriageFormpage/>}/>
+    <Route path='/marriageCertView/:id' element={<ViewMarriageCertPage/>}/>
     
    </Routes>
    </div>

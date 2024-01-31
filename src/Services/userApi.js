@@ -67,3 +67,7 @@ export const getAllProjects = () => {
 export const getAllMarriageCert=(userId)=>{
   return userInstance.get(`/fetchmarriageCert/${userId}`)
 }
+
+export const getMarriageCert=(certId,userId)=>{
+  return userInstance.get(`/fetchspecificmarriagecert/${certId}/${userId}`)
+}
