@@ -1,6 +1,7 @@
 
 .ViewMarriageCertMainDivOne{
     margin-left: 0;
+    margin-top: 70px;
 }
 .certHeading{
 font-weight:900;
@@ -16,7 +17,7 @@ margin-bottom: 20px;
     width: 140px;
 }
 
-.certHeading {
+/* .certHeading {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -34,4 +35,4 @@ margin-bottom: 20px;
   .bottomPart{
 
     margin:10px;
-  }
+  } */
